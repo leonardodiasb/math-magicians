@@ -1,0 +1,80 @@
+* {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-weight: 300;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.calculator {
+  width: 400px;
+  height: 600px;
+}
+
+.calculator .calc-display {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: #858694;
+  color: white;
+  padding: 20px 4px;
+  font-size: 1.4em;
+  font-weight: normal;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.4em;
+  width: 25%;
+}
+
+.btn,
+.sideBtn {
+  cursor: pointer;
+  border-radius: 0;
+  font-size: 1em;
+  transition: 0.1s;
+  border: 1px solid #d1d1d1;
+}
+
+.btn {
+  background: #e0e0e0;
+}
+
+.sideBtn {
+  background: #f5913e;
+}
+
+.btn0 {
+  width: 50%;
+}
+
+.btn:hover,
+.sideBtn:hover {
+  background-color: #000;
+  color: #fff;
+  font-weight: normal;
+}
