@@ -18,7 +18,7 @@
 - `git clone https://github.com/leonardodiasb/math-magicians.git`
 - `cd math-magicians`
 - `npm install`
-- `npm run start`
+- `npm start`
 
 ## Author
 
