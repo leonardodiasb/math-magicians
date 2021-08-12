@@ -24,47 +24,85 @@ export default function calculate(obj, buttonName) {
 
   if (isNumber(buttonName)) {
     if (buttonName === '0' && obj.next === '0') {
-      return {};
+      return {
+        total: obj.total,
+        next: '0',
+        operation: obj.operation,
+      };
     }
     // If there is an operation, update next
     if (obj.operation) {
       if (obj.next) {
-        return { next: obj.next + buttonName };
+        return {
+          total: obj.total,
+          next: obj.next + buttonName,
+          operation: obj.operation,
+        };
       }
-      return { next: buttonName };
+      return {
+        total: obj.total,
+        next: buttonName,
+        operation: obj.operation,
+      };
     }
     // If there is no operation, update next and clear the value
     if (obj.next) {
       return {
-        next: obj.next + buttonName,
         total: null,
+        next: obj.next + buttonName,
+        operation: obj.operation,
       };
     }
     return {
-      next: buttonName,
       total: null,
+      next: buttonName,
+      operation: obj.operation,
     };
   }
 
   if (buttonName === '.') {
     if (obj.next) {
       if (obj.next.includes('.')) {
-        return {};
+        return {
+          total: obj.total,
+          next: obj.next,
+          operation: obj.operation,
+        };
       }
-      // eslint-disable-next-line
-      return { next: obj.next + '.' };
+      return {
+        total: obj.total,
+        // eslint-disable-next-line
+        next: obj.next + '.',
+        operation: obj.operation,
+      };
     }
     if (obj.operation) {
-      return { next: '0.' };
+      return {
+        total: obj.total,
+        next: '0.',
+        operation: obj.operation,
+      };
     }
     if (obj.total) {
       if (obj.total.includes('.')) {
-        return {};
+        return {
+          total: obj.total,
+          next: buttonName,
+          operation: obj.operation,
+        };
       }
-      // eslint-disable-next-line
-      return { total: obj.total + '.' };
+      return {
+        // eslint-disable-next-line
+        total: obj.total + '.',
+        next: obj.next,
+        operation: obj.operation,
+      };
     }
-    return { total: '0.' };
+    return {
+      total: '0.',
+      next: obj.next,
+      operation: obj.operation,
+    };
   }
 
   if (buttonName === '=') {
@@ -77,18 +115,34 @@ export default function calculate(obj, buttonName) {
       // eslint-disable-next-line
     } else {
       // '=' with no operation, nothing to do
-      return {};
+      return {
+        total: obj.total,
+        next: obj.next,
+        operation: obj.operation,
+      };
     }
   }
 
   if (buttonName === '+/-') {
     if (obj.next) {
-      return { next: (-1 * parseFloat(obj.next)).toString() };
+      return {
+        total: obj.total,
+        next: (-1 * parseFloat(obj.next)).toString(),
+        operation: obj.operation,
+      };
     }
     if (obj.total) {
-      return { total: (-1 * parseFloat(obj.total)).toString() };
+      return {
+        total: (-1 * parseFloat(obj.total)).toString(),
+        next: obj.next,
+        operation: obj.operation,
+      };
     }
-    return {};
+    return {
+      total: obj.total,
+      next: buttonName,
+      operation: obj.operation,
+    };
   }
 
   // Button must be an operation
@@ -114,7 +168,11 @@ export default function calculate(obj, buttonName) {
 
   // The user hasn't typed a number yet, just save the operation
   if (!obj.next) {
-    return { operation: buttonName };
+    return {
+      total: obj.total,
+      next: obj.next,
+      operation: buttonName,
+    };
   }
 
   // save the operation and shift 'next' into 'total'
