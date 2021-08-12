@@ -16,7 +16,7 @@ function isNumber(item) {
 export default function calculate(obj, buttonName) {
   if (buttonName === 'AC') {
     return {
-      total: null,
+      total: '0',
       next: null,
       operation: null,
     };
@@ -51,6 +51,7 @@ export default function calculate(obj, buttonName) {
       if (obj.next.includes('.')) {
         return {};
       }
+      // eslint-disable-next-line
       return { next: obj.next + '.' };
     }
     if (obj.operation) {
@@ -60,6 +61,7 @@ export default function calculate(obj, buttonName) {
       if (obj.total.includes('.')) {
         return {};
       }
+      // eslint-disable-next-line
       return { total: obj.total + '.' };
     }
     return { total: '0.' };
@@ -72,6 +74,7 @@ export default function calculate(obj, buttonName) {
         next: null,
         operation: null,
       };
+      // eslint-disable-next-line
     } else {
       // '=' with no operation, nothing to do
       return {};
@@ -98,11 +101,13 @@ export default function calculate(obj, buttonName) {
 
   // User pressed an operation button and there is an existing operation
   if (obj.operation) {
-    return {
-      total: operate(obj.total, obj.next, obj.operation),
-      next: null,
-      operation: buttonName,
-    };
+    if (obj.next !== null) {
+      return {
+        total: operate(obj.total, obj.next, obj.operation),
+        next: null,
+        operation: buttonName,
+      };
+    }
   }
 
   // no operation yet, but the user typed one
