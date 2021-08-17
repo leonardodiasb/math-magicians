@@ -1,7 +1,12 @@
 import React from 'react';
+// import { BrowserRouter as Router } from  'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Calculator from './components/Calculator';
+import Navbar from './components/Navbar';
+import Home from './components/pages/Home';
+import Quote from './components/pages/Quote';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,9 +16,23 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="app">
-        <Calculator />
-      </div>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/calculator">
+            <div className="app">
+              <h2>Lets do some Math!</h2>
+              <Calculator />
+            </div>
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/quote">
+            <Quote />
+          </Route>
+        </Switch>
+      </Router>
     );
   }
 }
