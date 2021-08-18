@@ -16,15 +16,20 @@
 
 .app {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  align-items: baseline;
+  justify-content: space-between;
   width: 100%;
 }
 
+.app > h2 {
+  font-size: 40px;
+  font-weight: 500;
+  padding-left: 40px;
+}
+
 .calculator {
+  padding-right: 30px;
   width: 400px;
-  height: 600px;
 }
 
 .calculator .calc-display {
